@@ -1,0 +1,2 @@
+DATABASE_NAME='Concrete_Strength'
+COLLECTION_NAME='Data'
