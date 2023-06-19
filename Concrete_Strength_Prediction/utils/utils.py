@@ -67,3 +67,5 @@ def load_numpy_array_data(file_path: str) -> np.array:
             return np.load(file_obj, allow_pickle=True)
     except Exception as e:
         raise ApplicationException(e, sys) from e
+    
+    

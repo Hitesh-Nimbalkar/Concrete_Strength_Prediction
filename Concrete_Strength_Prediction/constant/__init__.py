@@ -19,4 +19,5 @@ from Concrete_Strength_Prediction.constant.database import *
 
 from Concrete_Strength_Prediction.constant.training_pipeline import *
 from Concrete_Strength_Prediction.constant.training_pipeline.data_ingestion import *
+from Concrete_Strength_Prediction.constant.training_pipeline.data_validation import *
 

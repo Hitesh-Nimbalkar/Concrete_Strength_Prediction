@@ -1,0 +1,16 @@
+FileName: ConcreteStrengthData.csv
+NumberOfColumns: 9
+
+
+ColumnNames:
+  AgeInDays: float64
+  BlastFurnaceSlag: float64
+  CementComponent: float64
+  CoarseAggregateComponent: float64
+  FineAggregateComponent: float64
+  FlyAshComponent: float64
+  Strength: float64
+  SuperplasticizerComponent: float64
+  WaterComponent: float64
+
+
