@@ -1,0 +1,56 @@
+# hyperparameters.yml
+
+Random Forest:
+  n_estimators:
+    - 100
+    - 200
+    - 300
+  max_depth:
+    - 5
+    - 10
+    - 15
+  min_samples_split:
+    - 2
+    - 5
+    - 10
+
+Decision Tree:
+  max_depth:
+    - 5
+    - 10
+    - 15
+  min_samples_split:
+    - 2
+    - 5
+    - 10
+
+Linear Regression: {}
+
+Ridge:
+  alpha:
+    - 0.1
+    - 0.5
+    - 1.0
+
+XGBRegressor:
+  n_estimators:
+    - 100
+    - 200
+    - 300
+  max_depth:
+    - 5
+    - 10
+    - 15
+  learning_rate:
+    - 0.1
+    - 0.01
+
+AdaBoost:
+  n_estimators:
+    - 100
+    - 200
+    - 300
+  learning_rate:
+    - 0.1
+    - 0.5
+    - 1.0

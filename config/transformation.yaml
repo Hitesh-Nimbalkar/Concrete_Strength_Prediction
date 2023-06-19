@@ -1,0 +1,14 @@
+target_column:
+- Strength
+
+numerical_column:
+- AgeInDays
+- BlastFurnaceSlag
+- CementComponent
+- SuperplasticizerComponent
+- WaterComponent
+
+drop_columns:    #### 
+- FineAggregateComponent
+- CoarseAggregateComponent
+- FlyAshComponent
