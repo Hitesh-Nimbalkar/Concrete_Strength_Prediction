@@ -12,7 +12,18 @@ CONFIG_DIR = "config"
 CONFIG_FILE_NAME = "config.yaml"
 CONFIG_FILE_PATH = os.path.join(ROOT_DIR,CONFIG_DIR,CONFIG_FILE_NAME)
 
+# Schema file path 
+SCHEMA_FILE_NAME='schema.yaml'
+SCHEMA_FILE_PATH=os.path.join(ROOT_DIR,CONFIG_DIR,SCHEMA_FILE_NAME)
+
+
+
 FILE_NAME='ConcreteStrengthData.csv'
+
+# Saved Model
+SAVED_MODEL_DIRECTORY='Saved_model'
+
+
 
 
 from Concrete_Strength_Prediction.constant.database import *
@@ -26,3 +37,6 @@ TRANFORMATION_YAML='transformation.yaml'
 
 # Transformation Yaml
 TRANSFORMATION_YAML_FILE_PATH=os.path.join(ROOT_DIR,CONFIG_DIR,TRANFORMATION_YAML)
+
+
+# 

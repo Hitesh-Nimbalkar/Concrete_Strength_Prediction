@@ -13,5 +13,6 @@ ColumnNames:
   SuperplasticizerComponent: float64
   WaterComponent: float64
 
-
+target_column:
+- Strength
 

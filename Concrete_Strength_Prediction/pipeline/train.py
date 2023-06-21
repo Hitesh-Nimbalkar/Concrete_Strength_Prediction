@@ -8,11 +8,11 @@ from threading import Thread
 from typing import List
 from Concrete_Strength_Prediction.utils.utils import read_yaml_file
 from multiprocessing import Process
-from Concrete_Strength_Prediction.entity.artifact_entity import DataIngestionArtifact,DataValidationArtifact,DataTransformationArtifact
+from Concrete_Strength_Prediction.entity.artifact_entity import DataIngestionArtifact,DataValidationArtifact,DataTransformationArtifact,ModelTrainerArtifact
 from Concrete_Strength_Prediction.components.data_ingestion import DataIngestion
 from Concrete_Strength_Prediction.components.data_validation import DataValidation
 from Concrete_Strength_Prediction.components.data_transformation import DataTransformation
-
+from Concrete_Strength_Prediction.components.model_trainer import ModelTrainer
 
 
 import os, sys
@@ -60,6 +60,15 @@ class Pipeline():
         except Exception as e:
             raise ApplicationException(e,sys) from e
         
+    def start_model_training(self,data_transformation_artifact: DataTransformationArtifact) -> ModelTrainerArtifact:
+        try:
+            model_trainer = ModelTrainer(model_trainer_config=self.config.get_model_trainer_config(),
+                                         
+                                        data_transformation_artifact=data_transformation_artifact)   
+
+            return model_trainer.initiate_model_training()
+        except Exception as e:
+            raise ApplicationException(e,sys) from e  
                 
     def run_pipeline(self):
         try:
@@ -69,7 +78,7 @@ class Pipeline():
             data_validation_artifact=self.start_data_validation(data_ingestion_artifact=data_ingestion_artifact)
             data_transformation_artifact = self.start_data_transformation(data_ingestion_artifact=data_ingestion_artifact,
                                                              data_validation_artifact=data_validation_artifact)
-
+            model_trainer_artifact = self.start_model_training(data_transformation_artifact=data_transformation_artifact)
 
          
         except Exception as e:

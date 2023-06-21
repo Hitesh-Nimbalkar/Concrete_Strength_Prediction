@@ -20,6 +20,13 @@ DataTransformationArtifact = namedtuple("DataTransformationArtifact",["is_transf
 
 
 
-ModelTrainerArtifact = namedtuple("ModelTrainerArtifact",["is_trained",
-                                                        "message",
-                                                        "trained_model_object_file_path"])
+ModelTrainerArtifact =namedtuple("ModelTrainerArtifact",[
+                                                            "is_trained",
+                                                            "message",
+                                                            "trained_model_file_path",
+                                                            "train_mse",
+                                                            "test_mse",
+                                                            "train_r2",
+                                                            "test_r2",
+                                                            "model_r2"
+                                                        ])

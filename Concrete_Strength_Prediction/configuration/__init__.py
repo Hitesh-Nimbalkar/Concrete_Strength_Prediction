@@ -15,6 +15,7 @@ class Configuration:
         ) -> None:
         try:
             self.config_info  = read_yaml_file(file_path=config_file_path)
+            
             self.training_pipeline_config = self.get_training_pipeline_config()
             self.time_stamp = current_time_stamp
         except Exception as e:
@@ -142,19 +143,45 @@ class Configuration:
             trained_model_file_path = os.path.join(model_trainer_artifact_dir,
                                                    model_trainer_config[MODEL_TRAINER_TRAINED_MODEL_DIR],
                                                    model_trainer_config[MODEL_TRAINER_TRAINED_MODEL_FILE_NAME_KEY])
- 
-            model_trainer_config = ModelTrainerConfig(trained_model_file_path=trained_model_file_path)
+            
+            model_config_path=os.path.join(ROOT_DIR,CONFIG_DIR,'model.yaml')
+            
+            
+            model_report_path=os.path.join(model_trainer_artifact_dir,
+                                        model_trainer_config[MODEL_TRAINER_TRAINED_MODEL_DIR],MODEL_REPORT_FILE)
+
+            model_trainer_config = ModelTrainerConfig(trained_model_file_path=trained_model_file_path,
+                                                      model_config_path=model_config_path,
+                                                      report_path=model_report_path)
             logging.info(f"Model Trainer Config : {model_trainer_config}")
             return model_trainer_config
         except Exception as e:
             raise ApplicationException(e,sys) from e
         
+        
+        
+    def saved_model_config(self) -> savedmodelConfig:
+        try:
+            artifact_dir = self.training_pipeline_config.artifact_dir
+            
+            
+            saved_model_file_path=os.path.join(ROOT_DIR,SAVED_MODEL_DIRECTORY,MODEL_TRAINER_TRAINED_MODEL_FILE_NAME_KEY)
+            
+            saved_report_file_path=os.path.join(ROOT_DIR,SAVED_MODEL_DIRECTORY,MODEL_REPORT_FILE)
+            saved_model_config = SavedModelConfig(saved_model_file_path=saved_model_file_path,
+                                            saved_report_file_path=saved_report_file_path)
+                                    
+        
+        except Exception as e:
+            raise ApplicationException(e,sys) from e
+        
+            
+            
+            
 
     def get_training_pipeline_config(self) ->TrainingPipelineConfig:
         try:
             training_pipeline_config = self.config_info[TRAINING_PIPELINE_CONFIG_KEY]
-            
-            # Artifact Directory
             artifact_dir = os.path.join(ROOT_DIR,
             training_pipeline_config[TRAINING_PIPELINE_NAME_KEY],
             training_pipeline_config[TRAINING_PIPELINE_ARTIFACT_DIR_KEY]

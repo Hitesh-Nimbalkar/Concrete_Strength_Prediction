@@ -438,8 +438,8 @@ class DataTransformation:
 
             train_arr = np.c_[train_arr, np.array(target_feature_train_df)]
             test_arr = np.c_[test_arr, np.array(target_feature_test_df)]
-            transformed_train_df = pd.DataFrame(train_arr, columns=col + [target_column_name])
-            transformed_test_df = pd.DataFrame(test_arr, columns=col + [target_column_name])
+            transformed_train_df = pd.DataFrame(train_arr, columns=col + target_column_name)
+            transformed_test_df = pd.DataFrame(test_arr, columns=col + target_column_name)
             
             # Adding target column to transformed dataframe
             transformed_train_dir = self.data_transformation_config.transformed_train_dir

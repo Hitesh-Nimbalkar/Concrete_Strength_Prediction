@@ -1,6 +1,4 @@
-training_pipeline_config:
-  pipeline_name: Concrete_Strength_Artifact
-  artifact_dir: artifact
+
 
 data_ingestion_config:
   #dataset_download_url: https://raw.githubusercontent.com/Hitesh-Nimbalkar/Shipment_Pricing_EDA/main/SCMS_Delivery_History_Dataset.csv
@@ -32,3 +30,7 @@ model_trainer_config:
   base_accuracy: 0.6
   model_config_dir: config
   model_config_file_name: model.yaml
+
+training_pipeline_config:
+  pipeline_name: Concrete_Strength_Artifact
+  artifact_dir: artifact
