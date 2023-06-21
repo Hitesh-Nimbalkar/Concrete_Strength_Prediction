@@ -68,4 +68,10 @@ def load_numpy_array_data(file_path: str) -> np.array:
     except Exception as e:
         raise ApplicationException(e, sys) from e
     
-    
+def load_object(file_path: str):
+    try:
+        with open(file_path, "rb") as file_obj:
+            obj = dill.load(file_obj)
+        return obj
+    except Exception as e:
+        raise ApplicationException(e, sys) from e

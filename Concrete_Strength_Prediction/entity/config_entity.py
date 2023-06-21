@@ -21,6 +21,7 @@ ModelTrainerConfig = namedtuple("ModelTrainerConfig",["trained_model_file_path",
 
 
 
-saved_model_config = SavedModelConfig(saved_model_file_path=saved_model_file_path,
-                                            saved_report_file_path=saved_report_file_path)
+SavedModelConfig = namedtuple("SavedModelConfig",["saved_model_file_path",
+                                            "saved_report_file_path"])
                                     
+

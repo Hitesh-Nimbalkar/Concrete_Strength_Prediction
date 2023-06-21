@@ -1,0 +1,12 @@
+import os
+
+PREDICTION_FOLDER='batch_Prediction'
+PREDICTION_CSV='prediction_csv'
+PREDICTION_FILE='prediction.csv'
+
+FEATURE_ENG_FOLDER='feature_eng'
+
+ROOT_DIR=os.getcwd()
+FEATURE_ENG=os.path.join(ROOT_DIR,PREDICTION_FOLDER,FEATURE_ENG_FOLDER)
+BATCH_PREDICTION=os.path.join(ROOT_DIR,PREDICTION_FOLDER,PREDICTION_CSV)
+BATCH_COLLECTION_PATH ='batch_prediction'

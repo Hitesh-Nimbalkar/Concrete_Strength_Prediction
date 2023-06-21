@@ -12,3 +12,6 @@ drop_columns:    ####
 - FineAggregateComponent
 - CoarseAggregateComponent
 - FlyAshComponent
+
+target_column:
+- Strength

@@ -146,20 +146,10 @@ class ModelTrainer:
             logging.info(f"Saving model at path: {trained_model_file_path}")
             save_object(file_path=trained_model_file_path, obj=predictor_result)
             
-            
+    
 
 
-            model_trainer_artifact = ModelTrainerArtifact(
-                                                            is_trained=True,
-                                                            message="Model Trained successfully",
-                                                            trained_model_file_path=trained_model_file_path,
-                                                            train_mse=metric_info.train_mse,
-                                                            test_mse=metric_info.test_mse,
-                                                            train_r2=metric_info.train_r2,
-                                                            test_r2=metric_info.test_r2,
-                                                            model_r2=metric_info.model_r2
-                                                        )
-            
+
             # Making Report 
             
             best_model_r2_score =str(metric_info.model_r2)
@@ -178,6 +168,17 @@ class ModelTrainer:
                 yaml.safe_dump(report, file)
             logging.info("-----------------------")
             
+            model_trainer_artifact = ModelTrainerArtifact(
+                                                is_trained=True,
+                                                message="Model Trained successfully",
+                                                trained_model_file_path=trained_model_file_path,
+                                                model_artifact_report=model_artifact_report_path,
+                                                train_mse=metric_info.train_mse,
+                                                test_mse=metric_info.test_mse,
+                                                train_r2=metric_info.train_r2,
+                                                test_r2=metric_info.test_r2,
+                                                model_r2=metric_info.model_r2
+                                            )
             
 
             logging.info(f"Model Trainer Artifact: {model_trainer_artifact}")

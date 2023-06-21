@@ -160,7 +160,7 @@ class Configuration:
         
         
         
-    def saved_model_config(self) -> savedmodelConfig:
+    def saved_model_config(self) -> SavedModelConfig:
         try:
             artifact_dir = self.training_pipeline_config.artifact_dir
             
@@ -170,7 +170,8 @@ class Configuration:
             saved_report_file_path=os.path.join(ROOT_DIR,SAVED_MODEL_DIRECTORY,MODEL_REPORT_FILE)
             saved_model_config = SavedModelConfig(saved_model_file_path=saved_model_file_path,
                                             saved_report_file_path=saved_report_file_path)
-                                    
+            logging.info(f"Model Trainer Config : {saved_model_config}")
+            return saved_model_config
         
         except Exception as e:
             raise ApplicationException(e,sys) from e

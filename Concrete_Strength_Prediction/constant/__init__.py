@@ -20,9 +20,6 @@ SCHEMA_FILE_PATH=os.path.join(ROOT_DIR,CONFIG_DIR,SCHEMA_FILE_NAME)
 
 FILE_NAME='ConcreteStrengthData.csv'
 
-# Saved Model
-SAVED_MODEL_DIRECTORY='Saved_model'
-
 
 
 
@@ -33,6 +30,12 @@ from Concrete_Strength_Prediction.constant.training_pipeline.data_ingestion impo
 from Concrete_Strength_Prediction.constant.training_pipeline.data_validation import *
 from Concrete_Strength_Prediction.constant.training_pipeline.data_transformation import *
 from Concrete_Strength_Prediction.constant.training_pipeline.model_trainer import *
+from Concrete_Strength_Prediction.constant.training_pipeline.model_pusher import *
+
+
+
+from Concrete_Strength_Prediction.constant.batch import *
+
 TRANFORMATION_YAML='transformation.yaml'
 
 # Transformation Yaml
