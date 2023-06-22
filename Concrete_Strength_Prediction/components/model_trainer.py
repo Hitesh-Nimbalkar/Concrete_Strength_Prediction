@@ -131,7 +131,7 @@ class ModelTrainer:
             
             logging.info(f"Model Selected : {metric_info.model_name}")
             logging.info(f"Best found model on both training and testing dataset.")
-            
+         
                         
             logging.info(f"-------------")
 
@@ -142,10 +142,10 @@ class ModelTrainer:
             predictor_result = Predictor(preprocessing_object=preprocessing_obj,
                                                       trained_model_object=model_object)
             
-            
+    
             logging.info(f"Saving model at path: {trained_model_file_path}")
-            save_object(file_path=trained_model_file_path, obj=predictor_result)
-            
+            save_object(file_path=trained_model_file_path, obj=model_object)
+          
     
 
 

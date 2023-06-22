@@ -165,7 +165,7 @@ class Configuration:
             artifact_dir = self.training_pipeline_config.artifact_dir
             
             
-            saved_model_file_path=os.path.join(ROOT_DIR,SAVED_MODEL_DIRECTORY,MODEL_TRAINER_TRAINED_MODEL_FILE_NAME_KEY)
+            saved_model_file_path=os.path.join(ROOT_DIR,SAVED_MODEL_DIRECTORY,'model.pkl')
             
             saved_report_file_path=os.path.join(ROOT_DIR,SAVED_MODEL_DIRECTORY,MODEL_REPORT_FILE)
             saved_model_config = SavedModelConfig(saved_model_file_path=saved_model_file_path,

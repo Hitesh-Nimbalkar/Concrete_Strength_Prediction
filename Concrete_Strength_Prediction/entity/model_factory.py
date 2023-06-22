@@ -77,12 +77,6 @@ def evaluate_regression_model(model_list: list, X_train, Y_train, X_test,
         metric_info_artifact = None
         for model in model_list:
             model_name = str(model)
-            start_index = model_name.find("<")
-            end_index = model_name.find(">")
-            if start_index != -1 and end_index != -1:
-                model_name = model_name[start_index+1:end_index].strip()
-            else:
-                model_name = "Unknown"
 
             # Getting predictions for training and testing datasets
             y_train_pred = model.predict(X_train)
@@ -110,9 +104,11 @@ def evaluate_regression_model(model_list: list, X_train, Y_train, X_test,
 
             logging.info(f" Mean Squared Error ")
 
-            logging.info(f"Diff test train R2: [{diff_test_train_r2}], For Model: {model}")
+            logging.info(f"Diff test train R2: [{diff_test_train_r2}],")
             logging.info(f"Train MSE: [{train_mse}]")
             logging.info(f"Test MSE: [{test_mse}]")
+            
+
 
 
             # If model_r2 is greater than base_r2 and the difference between test_r2 and train_r2 is within a certain threshold,

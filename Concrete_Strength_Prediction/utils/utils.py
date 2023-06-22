@@ -5,7 +5,7 @@ import dill
 import pandas as pd
 import numpy as np
 from Concrete_Strength_Prediction.constant import *
-
+import pickle
 def write_ymal_file(file_path:str, data:dict = None):
     try:
         os.makedirs(os.path.dirname(file_path),exist_ok=True)
@@ -29,15 +29,6 @@ def read_yaml_file(file_path:str)->dict:
         raise ApplicationException(e,sys) from e
     
 
-def load_object(file_path:str):
-    """
-    file_path: str
-    """
-    try:
-        with open(file_path, "rb") as file_obj:
-            return dill.load(file_obj)
-    except Exception as e:
-        raise ApplicationException(e,sys) from e
 
 def save_data(file_path:str, data:pd.DataFrame):
     try:
@@ -47,14 +38,15 @@ def save_data(file_path:str, data:pd.DataFrame):
     except Exception as e:
         raise ApplicationException(e,sys) from e
     
-def save_object(file_path:str,obj):
+def save_object(file_path, obj):
     try:
         dir_path = os.path.dirname(file_path)
-        os.makedirs(dir_path,exist_ok=True)
-        with open(file_path, "wb") as file_obj:
-            dill.dump(obj,file_obj)
+        os.makedirs(dir_path, exist_ok=True)
+        with open(file_path, "wb") as file:
+            pickle.dump(obj, file)
+        print("Object saved as pickle successfully.")
     except Exception as e:
-        raise ApplicationException(e,sys) from e
+        print("Error occurred while saving object as pickle:", e)
 
 def load_numpy_array_data(file_path: str) -> np.array:
     """
@@ -68,10 +60,11 @@ def load_numpy_array_data(file_path: str) -> np.array:
     except Exception as e:
         raise ApplicationException(e, sys) from e
     
-def load_object(file_path: str):
+
+def load_object(file_path):
     try:
-        with open(file_path, "rb") as file_obj:
-            obj = dill.load(file_obj)
+        with open(file_path, 'rb') as file:
+            obj = pickle.load(file)
         return obj
     except Exception as e:
-        raise ApplicationException(e, sys) from e
+        print("Error occurred while loading object from pickle:", e)

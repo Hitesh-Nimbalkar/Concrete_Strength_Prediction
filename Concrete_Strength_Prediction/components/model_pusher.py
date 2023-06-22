@@ -34,7 +34,7 @@ class ModelPusher:
             model_path = self.model_eval_artifact.selected_model_path
             logging.info(f" Model path : {model_path}")
             model = load_object(file_path=model_path)
-            file_path=os.path.join(ROOT_DIR,SAVED_MODEL_DIRECTORY,MODEL_TRAINER_TRAINED_MODEL_FILE_NAME_KEY)
+            file_path=os.path.join(ROOT_DIR,SAVED_MODEL_DIRECTORY,'model.pkl')
             
             save_object(file_path=file_path, obj=model)
             logging.info("Model saved.")

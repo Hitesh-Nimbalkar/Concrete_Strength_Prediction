@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Concrete Strength Prediction</title>
+</head>
+<body>
+    <h1>Concrete Strength Prediction</h1>
+
+    <h2>Perform Batch Prediction</h2>
+    <form action="/batch" method="post" enctype="multipart/form-data">
+        <input type="file" name="csv_file" accept=".csv" required>
+        <input type="submit" value="Upload and Predict">
+    </form>
+
+    <h2>Predict Concrete Strength for Instance</h2>
+    <form id="prediction_form" onsubmit="return predictConcreteStrength()">
+        <label for="age">Age in Days:</label>
+        <input type="number" id="age" required><br><br>
+        
+        <label for="slag">Blast Furnace Slag:</label>
+        <input type="number" id="slag" required><br><br>
+
+        <label for="cement">Cement Component:</label>
+        <input type="number" id="cement" required><br><br>
+
+        <label for="superplasticizer">Superplasticizer Component:</label>
+        <input type="number" id="superplasticizer" required><br><br>
+
+        <label for="water">Water Component:</label>
+        <input type="number" id="water" required><br><br>
+
+        <input type="submit" value="Predict">
+    </form>
+
+    <h2>Prediction Result</h2>
+    <div id="prediction_result"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function predictConcreteStrength() {
+            var age = parseInt(document.getElementById("age").value);
+            var slag = parseFloat(document.getElementById("slag").value);
+            var cement = parseFloat(document.getElementById("cement").value);
+            var superplasticizer = parseFloat(document.getElementById("superplasticizer").value);
+            var water = parseFloat(document.getElementById("water").value);
+
+            var jsonData = {
+                "AgeInDays": age,
+                "BlastFurnaceSlag": slag,
+                "CementComponent": cement,
+                "SuperplasticizerComponent": superplasticizer,
+                "WaterComponent": water
+            };
+
+            $.ajax({
+                url: "/predict",
+                type: "post",
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify(jsonData),
+                success: function (response) {
+                    document.getElementById("prediction_result").innerHTML = "Predicted Strength: " + response.predicted_strength;
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+
+            return false;
+        }
+    </script>
+</body>
+</html>
