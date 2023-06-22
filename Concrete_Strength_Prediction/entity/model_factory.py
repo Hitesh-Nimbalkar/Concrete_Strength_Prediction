@@ -5,7 +5,7 @@ import yaml
 from Concrete_Strength_Prediction.exception import ApplicationException
 import os
 import sys
-
+import re
 from collections import namedtuple
 from typing import List
 from Concrete_Strength_Prediction.logger import logging
@@ -48,7 +48,7 @@ MetricInfoArtifact = namedtuple("MetricInfoArtifact",["model_name",
 from sklearn.metrics import r2_score
 
 def evaluate_regression_model(model_list: list, X_train, Y_train, X_test,
-                              Y_test ,base_r2: float = 0.6) -> MetricInfoArtifact:
+                              Y_test ,base_r2: float = 0.81) -> MetricInfoArtifact:
     """
     Description:
     This function compares multiple regression models and returns the best model.
@@ -76,7 +76,8 @@ def evaluate_regression_model(model_list: list, X_train, Y_train, X_test,
         index_number = 0
         metric_info_artifact = None
         for model in model_list:
-            model_name = str(model)
+
+            model_name = re.search(r"([^.]+)$", model.__class__.__name__).group(1)
 
             # Getting predictions for training and testing datasets
             y_train_pred = model.predict(X_train)
@@ -99,8 +100,8 @@ def evaluate_regression_model(model_list: list, X_train, Y_train, X_test,
 
             # Logging all important metrics
             logging.info(f"Scores ")
-            logging.info(f"Train R2 Score : {train_r2} \tTest R2 Score\tAverage R2 Score")
-            logging.info(f"{train_r2}\t\t{test_r2}\t\t{model_r2}")
+            logging.info(f"Train R2 Score : \tTest R2 Score\tAverage R2 Score")
+            logging.info(f"{train_r2}\t\t {test_r2}\t\t  {model_r2}")
 
             logging.info(f" Mean Squared Error ")
 
@@ -113,7 +114,7 @@ def evaluate_regression_model(model_list: list, X_train, Y_train, X_test,
 
             # If model_r2 is greater than base_r2 and the difference between test_r2 and train_r2 is within a certain threshold,
             # we accept the model as the best model
-            if model_r2 >= base_r2 and diff_test_train_r2 < 0.10:
+            if model_r2 >= base_r2 and diff_test_train_r2 < 0.20:
                 base_r2 = model_r2
                 metric_info_artifact = MetricInfoArtifact(model_name=model_name,
                                                           model_object=model,

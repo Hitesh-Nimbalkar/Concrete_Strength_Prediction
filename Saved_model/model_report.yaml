@@ -1,2 +1,2 @@
-Model_name: AdaBoostRegressor
-R2_score: 0.7544741755749896
+Model_name: XGBRegressor
+R2_score: 0.9037991724275289

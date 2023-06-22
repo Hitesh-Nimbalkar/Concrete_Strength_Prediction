@@ -107,7 +107,7 @@ class ModelTrainer:
             
             
             logging.info(f"Initiating operation model selection")
-            base_r2=0.6
+            base_r2=0.81
             best_model = model_factory.get_best_model(X=X_train, y=Y_train,base_r2=base_r2)
             
             logging.info(f"-------------")
