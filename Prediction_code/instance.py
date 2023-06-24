@@ -81,7 +81,7 @@ class instance_prediction_class:
         predicted_strength = [round(strength, 2) for strength in predicted_strength]
 
         # Print the rounded predicted shipment prices
-        for i, price in enumerate(predicted_strength):
-            print(f"The predicted Concrete Strength {i+1} is:  {predicted_strength}")
+        
+        print(f"The predicted Concrete Strength  is:  {predicted_strength[0]}")
 
-        return predicted_strength
+        return predicted_strength[0]
