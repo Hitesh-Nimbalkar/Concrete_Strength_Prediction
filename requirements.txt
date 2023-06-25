@@ -5,5 +5,9 @@ Pyaml
 yaml
 dill
 certifi
+numpy
+pandas
+pymongo
 scikit-learn
+scipy
 -e .

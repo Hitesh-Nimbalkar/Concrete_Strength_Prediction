@@ -20,8 +20,8 @@ def get_requirements()->List[str]:
 setup(
     name="Concrete_Strength_prediction",
     version="0.0.1",
-    author="Hitesh_Nimbalkar",
-    author_email="nimbalkarhitesh@gmail.com",
+    author="Success_Analytics",
+    author_email="Success_Analytics@gmail.com",
     packages = find_packages(),
     install_requires=get_requirements(),
 )
